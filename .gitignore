@@ -1,0 +1,5 @@
+*.sw*
+.bundle
+.DS_Store
+*~
+tmp/
