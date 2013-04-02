@@ -1,6 +1,6 @@
 {
   "name": "gauntlet-browser",
-  "description": "hello world test app",
+  "description": "Browser based zombie apocalypse top down action multiplayer co-op",
   "version": "0.0.1",
   "engines": {
     "node": "0.10.1",
