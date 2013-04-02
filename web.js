@@ -7,13 +7,17 @@ nib = require('nib');
 
 app = express();
 
+function compile(str, path) {
+  return stylus(str).set("filename", path).use(nib());
+};
+
 app.set("view engine", "jade");
 
 app.use(express.logger('dev'))
 
 app.use(stylus.middleware({
   debug: true, 
-  src: __dirname + '/stylesheets',
+  src: __dirname + '/public',
   compile: compile
 }));
 
