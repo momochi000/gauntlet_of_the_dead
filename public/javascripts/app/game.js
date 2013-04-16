@@ -1,4 +1,5 @@
-var Gauntlet = (function (){
+var Gauntlet = {};
+Gauntlet.Game = (function (){
   var start;
 
   start = function (){
@@ -12,5 +13,5 @@ var Gauntlet = (function (){
 })();
 
 window.onload = function (){
-  Gauntlet.start();
+  Gauntlet.Game.start();
 };
