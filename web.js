@@ -26,6 +26,7 @@ app.use(express.static(__dirname + '/public'));
 app.get('/', function(request, response) {
   response.render("index", {scripts: 
     [
+      'javascripts/app/components/player_controls_component.js',
       'javascripts/app/scenes/main_scene.js',
       'javascripts/app/sprites/character_sprite.js'
     ]
