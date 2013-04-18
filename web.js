@@ -21,7 +21,7 @@ app.use(stylus.middleware({
   compile: compile
 }));
 
-app.use(express.static(__dirname + '/public'));
+app.use(express.static(__dirname + '/public', { maxAge: 31557600000 }));
 
 app.get('/', function(request, response) {
   response.render("index", {scripts: 
