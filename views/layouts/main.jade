@@ -8,3 +8,6 @@ html
     //- Scripts go here
     script(src='/javascripts/vendor/crafty.js')
     script(src='/javascripts/app/game.js')
+    each script in scripts
+      script(src=script)
+      - console.log("NOTE: Loading file ->" + script);
