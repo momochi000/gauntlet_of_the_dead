@@ -50,6 +50,18 @@ Crafty.c("PlayerControls", {
       return false;
     }
   },
+  currentlyWalkingUp: function() {
+    return this.move.up;
+  },
+  currentlyWalkingDown: function() {
+    return this.move.down;
+  },
+  currentlyWalkingLeft: function() {
+    return this.move.left;
+  },
+  currentlyWalkingRight: function() {
+    return this.move.right;
+  },
 
   // private
   _handleInput: function (){
