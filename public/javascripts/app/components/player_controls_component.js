@@ -10,7 +10,6 @@ Crafty.c("PlayerControls", {
       left: false,
       right: false
     };
-    console.log("binding frame");
     this.bind('EnterFrame', this._handleInput);
 
     this.bind('KeyDown', function (e){
@@ -42,7 +41,17 @@ Crafty.c("PlayerControls", {
         __self.move.right = false;
       }
     });
+    return this;
   },
+  currentlyWalking: function() {
+    if(this.move.up || this.move.down || this.move.left || this.move.right) {
+      return true;
+    } else {
+      return false;
+    }
+  },
+
+  // private
   _handleInput: function (){
     if(this.move.up) {
       this.y -= this.moveSpeed;

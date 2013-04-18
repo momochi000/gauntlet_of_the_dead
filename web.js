@@ -27,6 +27,7 @@ app.get('/', function(request, response) {
   response.render("index", {scripts: 
     [
       'javascripts/app/components/player_controls_component.js',
+      'javascripts/app/components/player_animation_component.js',
       'javascripts/app/scenes/main_scene.js',
       'javascripts/app/sprites/character_sprite.js'
     ]
