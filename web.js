@@ -24,7 +24,12 @@ app.use(stylus.middleware({
 app.use(express.static(__dirname + '/public'));
 
 app.get('/', function(request, response) {
-  response.render("index");
+  response.render("index", {scripts: 
+    [
+      'javascripts/app/scenes/main_scene.js',
+      'javascripts/app/sprites/character_sprite.js'
+    ]
+  });
 });
 
 port = process.env.PORT || 5000;
