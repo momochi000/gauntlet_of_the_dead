@@ -10,31 +10,41 @@ Crafty.c("PlayerAnimation", {
     this.currentlyAnimating = false;
 
     this.bind('EnterFrame', this._handleAnimation);
+    return this;
   },
   _handleAnimation: function() {
+    var WALK_ANIM_SPEED = 13;
     if(this.currentlyAnimating && !this.currentlyWalking()) {
       this.stop();
       this.currentlyAnimating = false;
     }
 
     if(this.currentlyWalkingUp()) {
-      this.animate("walking_up", 30, -1);
-      this.currentlyAnimating = true;
+      if(!this.isPlaying('walking_up')){
+        this.stop().animate("walking_up", WALK_ANIM_SPEED, -1);
+        this.currentlyAnimating = true;
+      }
     }
 
     if(this.currentlyWalkingDown()) {
-      this.animate("walking_down", 30, -1);
-      this.currentlyAnimating = true;
+      if(!this.isPlaying('walking_down')){
+        this.stop().animate("walking_down", WALK_ANIM_SPEED, -1);
+        this.currentlyAnimating = true;
+      }
     }
 
     if(this.currentlyWalkingLeft()) {
-      this.animate("walking_left", 30, -1);
-      this.currentlyAnimating = true;
+      if(!this.isPlaying('walking_left')){
+        this.stop().animate("walking_left", WALK_ANIM_SPEED, -1);
+        this.currentlyAnimating = true;
+      }
     }
 
     if(this.currentlyWalkingRight()) {
-      this.animate("walking_right", 30, -1);
-      this.currentlyAnimating = true;
+      if(!this.isPlaying('walking_right')){
+        this.stop().animate("walking_right", WALK_ANIM_SPEED, -1);
+        this.currentlyAnimating = true;
+      }
     }
   }
 });
