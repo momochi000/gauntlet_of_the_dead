@@ -5956,6 +5956,59 @@ Crafty.extend({
     }
 });
 
+Crafty.extend({
+    bufferedCanvas: {
+    /**@
+        * #Crafty.canvas.context
+        * @comp Crafty.canvas
+        * 
+        * This will return the 2D context of the main canvas element.
+        * The value returned from `Crafty.canvas._canvas.getContext('2d')`.
+        */
+        context: null,
+        /**@
+        * #Crafty.canvas._canvas
+        * @comp Crafty.canvas
+        * 
+        * Main Canvas element
+        */
+
+        /**@
+        * #Crafty.canvas.init
+        * @comp Crafty.canvas
+        * @sign public void Crafty.canvas.init(void)
+        * @trigger NoCanvas - triggered if `Crafty.support.canvas` is false
+        * 
+        * Creates a `canvas` element inside `Crafty.stage.elem`. Must be called
+        * before any entities with the Canvas component can be drawn.
+        *
+        * This method will automatically be called if no `Crafty.canvas.context` is
+        * found.
+        */
+        init: function () {
+            //check if canvas is supported
+            if (!Crafty.support.canvas) {
+                Crafty.trigger("NoCanvas");
+                Crafty.stop();
+                return;
+            }
+
+            //create 3 empty canvas elements
+            var c;
+            c = document.createElement("bufferedCanvas");
+            c.width = Crafty.viewport.width;
+            c.height = Crafty.viewport.height;
+            c.style.position = 'absolute';
+            c.style.left = "0px";
+            c.style.top = "0px";
+
+            Crafty.stage.elem.appendChild(c);
+            Crafty.bufferedCanvas.context = c.getContext('2d');
+            Crafty.bufferedCanvas._canvas = c;
+        }
+    }
+});
+
 
 Crafty.extend({
     over: null, //object mouseover, waiting for out

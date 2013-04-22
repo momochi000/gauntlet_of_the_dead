@@ -26,6 +26,10 @@ app.use(express.static(__dirname + '/public', { maxAge: 31557600000 }));
 app.get('/', function(request, response) {
   response.render("index", {scripts: 
     [
+      'javascripts/vendor/create_mocks_module.js',
+      'javascripts/vendor/tiledmapbuilder.js',
+      'javascripts/app/maps/map1.js',
+      'javascripts/app/maps/map3.js',
       'javascripts/app/components/player_controls_component.js',
       'javascripts/app/components/player_animation_component.js',
       'javascripts/app/scenes/main_scene.js',

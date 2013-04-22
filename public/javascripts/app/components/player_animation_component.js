@@ -10,6 +10,7 @@ Crafty.c("PlayerAnimation", {
     this.currentlyAnimating = false;
 
     this.bind('EnterFrame', this._handleAnimation);
+    return this;
   },
   _handleAnimation: function() {
     if(this.currentlyAnimating && !this.currentlyWalking()) {
@@ -18,23 +19,31 @@ Crafty.c("PlayerAnimation", {
     }
 
     if(this.currentlyWalkingUp()) {
-      this.animate("walking_up", 30, -1);
-      this.currentlyAnimating = true;
+      if(!this.isPlaying("walking_up")){
+        this.stop().animate("walking_up", 20, -1);
+        this.currentlyAnimating = true;
+      }
     }
 
     if(this.currentlyWalkingDown()) {
-      this.animate("walking_down", 30, -1);
-      this.currentlyAnimating = true;
+      if(!this.isPlaying("walking_down")){
+        this.stop().animate("walking_down", 20, -1);
+        this.currentlyAnimating = true;
+      }
     }
 
     if(this.currentlyWalkingLeft()) {
-      this.animate("walking_left", 30, -1);
-      this.currentlyAnimating = true;
+      if(!this.isPlaying("walking_left")){
+        this.stop().animate("walking_left", 20, -1);
+        this.currentlyAnimating = true;
+      }
     }
 
     if(this.currentlyWalkingRight()) {
-      this.animate("walking_right", 30, -1);
-      this.currentlyAnimating = true;
+      if(!this.isPlaying("walking_right")){
+        this.stop().animate("walking_right", 30, -1);
+        this.currentlyAnimating = true;
+      }
     }
   }
 });
