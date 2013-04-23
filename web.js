@@ -1,15 +1,31 @@
 var app, 
   express, jade, stylus, nib,
-  port;
+  port, walk;
 express = require('express');
 stylus = require('stylus');
 nib = require('nib');
-
 app = express();
+walk = require('walk');
 
 function compile(str, path) {
   return stylus(str).set("filename", path).use(nib());
 };
+
+function getPublicJavascripts(callback) {
+  var files   = [];
+  var walker  = walk.walk('./public', { followLinks: false });
+
+  walker.on('file', function(root, stat, next) {
+    if(stat.name.indexOf('.js') !== -1) {
+      files.push(root.replace("./public/", "") + '/' + stat.name);
+    }
+    next();
+  });
+
+  walker.on('end', function() {
+    callback(files);
+  });
+}
 
 app.set("view engine", "jade");
 
@@ -24,15 +40,8 @@ app.use(stylus.middleware({
 app.use(express.static(__dirname + '/public', { maxAge: 31557600000 }));
 
 app.get('/', function(request, response) {
-  response.render("index", {scripts: 
-    [
-      'javascripts/app/components/player_controls_component.js',
-      'javascripts/app/components/player_animation_component.js',
-      'javascripts/app/components/player_spawner_component.js',
-      'javascripts/app/scenes/main_scene.js',
-      'javascripts/app/maps/main/main_map.js',
-      'javascripts/app/sprites/character_sprite.js'
-    ]
+  getPublicJavascripts(function(scripts) {
+    response.render("index", {scripts: scripts})
   });
 });
 

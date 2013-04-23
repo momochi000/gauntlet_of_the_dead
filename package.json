@@ -12,6 +12,7 @@
     "jade": "0.28.2",
     "stylus": "0.32.1",
     "nib": "*",
-    "jasmine-node": "1.6.0"
+    "jasmine-node": "1.6.0",
+    "walk": "*"
   }
 }
