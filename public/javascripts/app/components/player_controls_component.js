@@ -3,46 +3,46 @@ Crafty.c("PlayerControls", {
     this.moveSpeed = 3;
   },
   playerControls: function (){
-    var __self = this;
-    this.move = {
-      up: false,
-      down: false,
-      left: false,
-      right: false
-    };
-    this.bind('EnterFrame', this._handleInput);
+  var __self = this;
+  this.move = {
+up: false,
+down: false,
+left: false,
+right: false
+};
+this.bind('EnterFrame', this._handleInput);
 
-    this.bind('KeyDown', function (e){
-      if(e.keyCode === Crafty.keys.W) {
-        __self.move.up = true;
-      }
-      if(e.keyCode === Crafty.keys.A) {
-        __self.move.left = true;
-      }
-      if(e.keyCode === Crafty.keys.S) {
-        __self.move.down = true;
-      }
-      if(e.keyCode === Crafty.keys.D) {
-        __self.move.right = true;
-      }
-    });
+this.bind('KeyDown', function (e){
+  if(e.keyCode === Crafty.keys.W) {
+  __self.move.up = true;
+  }
+  if(e.keyCode === Crafty.keys.A) {
+  __self.move.left = true;
+  }
+  if(e.keyCode === Crafty.keys.S) {
+  __self.move.down = true;
+  }
+  if(e.keyCode === Crafty.keys.D) {
+  __self.move.right = true;
+  }
+  });
 
-    this.bind('KeyUp', function (e){
-      if(e.keyCode === Crafty.keys.W) {
-        __self.move.up = false;
-      }
-      if(e.keyCode === Crafty.keys.A) {
-        __self.move.left = false;
-      }
-      if(e.keyCode === Crafty.keys.S) {
-        __self.move.down = false;
-      }
-      if(e.keyCode === Crafty.keys.D) {
-        __self.move.right = false;
-      }
+this.bind('KeyUp', function (e){
+    if(e.keyCode === Crafty.keys.W) {
+    __self.move.up = false;
+    }
+    if(e.keyCode === Crafty.keys.A) {
+    __self.move.left = false;
+    }
+    if(e.keyCode === Crafty.keys.S) {
+    __self.move.down = false;
+    }
+    if(e.keyCode === Crafty.keys.D) {
+    __self.move.right = false;
+    }
     });
-    return this;
-  },
+return this;
+},
   currentlyWalking: function() {
     if(this.move.up || this.move.down || this.move.left || this.move.right) {
       return true;
@@ -65,17 +65,53 @@ Crafty.c("PlayerControls", {
 
   // private
   _handleInput: function (){
+    this.storePosition();
+
     if(this.move.up) {
       this.y -= this.moveSpeed;
+      this.collideY();
     }
     if(this.move.left) {
       this.x -= this.moveSpeed;
+      this.collideX();
     }
     if(this.move.down) {
       this.y += this.moveSpeed;
+      this.collideY();
     }
     if(this.move.right) {
       this.x += this.moveSpeed;
+      this.collideX();
+    }
+  },
+
+  storePosition: function() {
+    this.prevX = this.x;
+    this.prevY = this.y;
+  },
+
+  resetPosition: function() {
+    this.x = this.prevX;
+    this.y = this.prevY;
+  },
+
+  resetX: function() {
+    this.x = this.prevX;
+  },
+
+  resetY: function() {
+    this.y = this.prevY;
+  },
+
+  collideY: function() {
+    if(this.hit("Wall")) {
+      this.resetY();
+    }
+  },
+
+  collideX: function() {
+    if(this.hit("Wall")) {
+      this.resetX();
     }
   }
 });

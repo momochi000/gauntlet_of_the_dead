@@ -1,8 +1,8 @@
 var Gauntlet = {};
 Gauntlet.Game = (function (){
   var start, 
-      viewportWidth = 640, 
-      viewportHeight = 480;
+      viewportWidth = 1000, 
+      viewportHeight = 900;
 
   start = function (){
     Crafty.init(viewportWidth, viewportHeight);
