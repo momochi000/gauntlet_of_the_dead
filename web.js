@@ -28,6 +28,7 @@ app.get('/', function(request, response) {
     [
       'javascripts/app/components/player_controls_component.js',
       'javascripts/app/components/player_animation_component.js',
+      'javascripts/app/components/player_spawner_component.js',
       'javascripts/app/scenes/main_scene.js',
       'javascripts/app/maps/main/main_map.js',
       'javascripts/app/sprites/character_sprite.js'

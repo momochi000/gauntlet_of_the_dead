@@ -1,12 +1,19 @@
+var debug_player;
 Gauntlet.Maps = {};
 Gauntlet.Maps.MainMap = (function() {
   var render, 
     generateBorders,
-    M_WIDTH, M_HEIGHT;
+    generateMap,
+    generateEntities,
+    M_WIDTH, M_HEIGHT,
+    PLAYER_SPAWN_X, PLAYER_SPAWN_Y,
+    player_spawner;
 
   M_WIDTH = 3008;
   M_HEIGHT = 3040;
 
+  PLAYER_SPAWN_X = 400;
+  PLAYER_SPAWN_Y = 27;
 
   function generateBorders() {
     Crafty.e("2D, DOM, Collision, Wall") // North Wall
@@ -23,13 +30,35 @@ Gauntlet.Maps.MainMap = (function() {
       .collision( new Crafty.polygon([[0,0],[2, 0],[2, M_HEIGHT],[0, M_HEIGHT]]));
   }
 
+  function createPlayerSpawner() {
+    return Crafty.e("2D, PlayerSpawner")
+      .attr({x: PLAYER_SPAWN_X, y: PLAYER_SPAWN_Y})
+  }
+
   render = function (){
     Crafty.e("2D, DOM, Image").image("assets/images/maps/main.png")
       .attr({w: M_WIDTH, h: M_HEIGHT});
-    generateBorders();
   }
+
+  generateMap = function () {
+    render();
+    generateBorders();
+  };
+
+  generateEntities = function() {
+    var player, spawner;
+    spawner = createPlayerSpawner();
+    player = spawner.spawnPlayer();
+    debug_player = player;
+
+    return {
+      playerSpawner: spawner,
+      player: player
+    }
+  };
   
   return {
-    render: render
+    generateMap: generateMap,
+    generateEntities: generateEntities
   };
 })();
