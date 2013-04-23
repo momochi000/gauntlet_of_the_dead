@@ -1,10 +1,13 @@
 var Gauntlet = {};
 Gauntlet.Game = (function (){
-  var start;
+  var start, 
+      viewportWidth = 640, 
+      viewportHeight = 480;
 
   start = function (){
-    Crafty.init();
+    Crafty.init(viewportWidth, viewportHeight);
     Crafty.background("blue");
+    Crafty.viewport.init(viewportWidth, viewportHeight);
     Crafty.scene('main');
   };
 
