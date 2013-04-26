@@ -6,8 +6,8 @@ Gauntlet.Game = (function (){
 
   start = function (){
     Crafty.init(viewportWidth, viewportHeight);
-    Crafty.background("blue");
     Crafty.viewport.init(viewportWidth, viewportHeight);
+    Crafty.background("blue");
     Crafty.scene('main');
   };
 

@@ -1,5 +1,6 @@
 Crafty.c("PlayerControls", {
   init: function (){
+    this.requires("Collision");
     this.moveSpeed = 3;
   },
   playerControls: function (){
@@ -14,31 +15,31 @@ Crafty.c("PlayerControls", {
     this.bind('EnterFrame', this._handleInput);
 
     this.bind('KeyDown', function (e){
-      if(e.keyCode === Crafty.keys.W) {
+      if(e.keyCode === Crafty.keys.W || e.keyCode === Crafty.keys.UP_ARROW){
         __self.move.up = true;
       }
-      if(e.keyCode === Crafty.keys.A) {
+      if(e.keyCode === Crafty.keys.A || e.keyCode === Crafty.keys.LEFT_ARROW){
         __self.move.left = true;
       }
-      if(e.keyCode === Crafty.keys.S) {
+      if(e.keyCode === Crafty.keys.S || e.keyCode === Crafty.keys.DOWN_ARROW){
         __self.move.down = true;
       }
-      if(e.keyCode === Crafty.keys.D) {
+      if(e.keyCode === Crafty.keys.D || e.keyCode === Crafty.keys.RIGHT_ARROW){
         __self.move.right = true;
       }
     });
 
     this.bind('KeyUp', function (e){
-      if(e.keyCode === Crafty.keys.W) {
+      if(e.keyCode === Crafty.keys.W || e.keyCode === Crafty.keys.UP_ARROW) {
         __self.move.up = false;
       }
-      if(e.keyCode === Crafty.keys.A) {
+      if(e.keyCode === Crafty.keys.A || e.keyCode === Crafty.keys.LEFT_ARROW){
         __self.move.left = false;
       }
-      if(e.keyCode === Crafty.keys.S) {
+      if(e.keyCode === Crafty.keys.S || e.keyCode === Crafty.keys.DOWN_ARROW){
         __self.move.down = false;
       }
-      if(e.keyCode === Crafty.keys.D) {
+      if(e.keyCode === Crafty.keys.D || e.keyCode === Crafty.keys.RIGHT_ARROW) {
         __self.move.right = false;
       }
     });
