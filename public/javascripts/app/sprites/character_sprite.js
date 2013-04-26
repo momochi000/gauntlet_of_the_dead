@@ -14,7 +14,20 @@ Gauntlet.Sprites = (function (){
       chrisr2: [2, 2],
       chrisu0: [0, 3],
       chrisu1: [1, 3],
-      chrisu2: [2, 3]
+      chrisu2: [2, 3],
+
+      jayd0: [0, 4],
+      jayd1: [1, 4],
+      jayd2: [2, 4],
+      jayl0: [0, 5],
+      jayl1: [1, 5],
+      jayl2: [2, 5],
+      jayr0: [0, 6],
+      jayr1: [1, 6],
+      jayr2: [2, 6],
+      jayu0: [0, 7],
+      jayu1: [1, 7],
+      jayu2: [2, 7]
     });
    
   };

@@ -46,14 +46,18 @@ Gauntlet.Maps.MainMap = (function() {
   };
 
   generateEntities = function() {
-    var player, spawner;
+    var player, npc, spawner;
     spawner = createPlayerSpawner();
     player = spawner.spawnPlayer();
     debug_player = player;
+    npc = Crafty.e("NPC").attr({x: 200, y: 200});
+    console.log("NPC WAS GENERATED~~ =>");
+    console.log(npc);
 
     return {
       playerSpawner: spawner,
-      player: player
+      player: player,
+      npc : npc
     }
   };
   
