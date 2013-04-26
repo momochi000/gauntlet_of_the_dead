@@ -51,8 +51,6 @@ Gauntlet.Maps.MainMap = (function() {
     player = spawner.spawnPlayer();
     debug_player = player;
     npc = Crafty.e("NPC").attr({x: 200, y: 200});
-    console.log("NPC WAS GENERATED~~ =>");
-    console.log(npc);
 
     return {
       playerSpawner: spawner,
