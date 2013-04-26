@@ -1,119 +1,44 @@
 Crafty.c("PlayerControls", {
   init: function (){
-    this.requires("Collision");
+    this.requires("Collision, PlayerMovementControls");
     this.moveSpeed = 3;
   },
+
   playerControls: function (){
     var __self = this;
-    this.move = {
-      up: false,
-      down: false,
-      left: false,
-      right: false
-    };
-
-    this.bind('EnterFrame', this._handleInput);
+    
 
     this.bind('KeyDown', function (e){
       if(e.keyCode === Crafty.keys.W || e.keyCode === Crafty.keys.UP_ARROW){
-        __self.move.up = true;
+        __self.moveUp();
       }
       if(e.keyCode === Crafty.keys.A || e.keyCode === Crafty.keys.LEFT_ARROW){
-        __self.move.left = true;
+        __self.moveLeft();
       }
       if(e.keyCode === Crafty.keys.S || e.keyCode === Crafty.keys.DOWN_ARROW){
-        __self.move.down = true;
+        __self.moveDown();
       }
       if(e.keyCode === Crafty.keys.D || e.keyCode === Crafty.keys.RIGHT_ARROW){
-        __self.move.right = true;
+        __self.moveRight();
       }
     });
 
     this.bind('KeyUp', function (e){
-      if(e.keyCode === Crafty.keys.W || e.keyCode === Crafty.keys.UP_ARROW) {
-        __self.move.up = false;
+     if(e.keyCode === Crafty.keys.W || e.keyCode === Crafty.keys.UP_ARROW){
+        __self.stopMoveUp();
       }
       if(e.keyCode === Crafty.keys.A || e.keyCode === Crafty.keys.LEFT_ARROW){
-        __self.move.left = false;
+        __self.stopMoveLeft();
       }
       if(e.keyCode === Crafty.keys.S || e.keyCode === Crafty.keys.DOWN_ARROW){
-        __self.move.down = false;
+        __self.stopMoveDown();
       }
-      if(e.keyCode === Crafty.keys.D || e.keyCode === Crafty.keys.RIGHT_ARROW) {
-        __self.move.right = false;
+      if(e.keyCode === Crafty.keys.D || e.keyCode === Crafty.keys.RIGHT_ARROW){
+        __self.stopMoveRight();
       }
+
     });
     return this;
-  },
-  currentlyWalking: function() {
-    if(this.move.up || this.move.down || this.move.left || this.move.right) {
-      return true;
-    } else {
-      return false;
-    }
-  },
-  currentlyWalkingUp: function() {
-    return this.move.up;
-  },
-  currentlyWalkingDown: function() {
-    return this.move.down;
-  },
-  currentlyWalkingLeft: function() {
-    return this.move.left;
-  },
-  currentlyWalkingRight: function() {
-    return this.move.right;
-  },
-
-  // private
-  _handleInput: function (){
-    this.storePosition();
-
-    if(this.move.up) {
-      this.y -= this.moveSpeed;
-      this.collideY();
-    }
-    if(this.move.left) {
-      this.x -= this.moveSpeed;
-      this.collideX();
-    }
-    if(this.move.down) {
-      this.y += this.moveSpeed;
-      this.collideY();
-    }
-    if(this.move.right) {
-      this.x += this.moveSpeed;
-      this.collideX();
-    }
-  },
-
-  storePosition: function() {
-    this.prevX = this.x;
-    this.prevY = this.y;
-  },
-
-  resetPosition: function() {
-    this.x = this.prevX;
-    this.y = this.prevY;
-  },
-
-  resetX: function() {
-    this.x = this.prevX;
-  },
-
-  resetY: function() {
-    this.y = this.prevY;
-  },
-
-  collideY: function() {
-    if(this.hit("Wall")) {
-      this.resetY();
-    }
-  },
-
-  collideX: function() {
-    if(this.hit("Wall")) {
-      this.resetX();
-    }
   }
+
 });

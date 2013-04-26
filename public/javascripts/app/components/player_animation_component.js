@@ -1,6 +1,6 @@
 Crafty.c("PlayerAnimation", {
   init: function() {
-    this.requires("SpriteAnimation, PlayerControls");
+    this.requires("SpriteAnimation, PlayerMovement, PlayerControls");
     this.animate("walking_down", 0, 0, 2)
       .animate("walking_left", 0, 1, 2)
       .animate("walking_right", 0, 2, 2)
