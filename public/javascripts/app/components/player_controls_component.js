@@ -6,7 +6,6 @@ Crafty.c("PlayerControls", {
 
   playerControls: function (){
     var __self = this;
-    
 
     this.bind('KeyDown', function (e){
       if(e.keyCode === Crafty.keys.W || e.keyCode === Crafty.keys.UP_ARROW){
