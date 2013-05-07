@@ -28,8 +28,12 @@ app.get('/', function(request, response) {
     [
       'javascripts/app/components/player_controls_component.js',
       'javascripts/app/components/player_animation_component.js',
+      'javascripts/app/components/buffered_canvas_component.js',
       'javascripts/app/scenes/main_scene.js',
-      'javascripts/app/sprites/character_sprite.js'
+      'javascripts/app/sprites/character_sprite.js',
+      'javascripts/vendor/create_mocks_module.js',
+      'javascripts/vendor/tiledmapbuilder.js',
+      'assets/maps/test_tilemap.js'
     ]
   });
 });

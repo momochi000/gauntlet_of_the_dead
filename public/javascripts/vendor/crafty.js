@@ -5834,6 +5834,7 @@ Crafty.c("Canvas", {
     * Method to draw the entity on the canvas element. Can pass rect values for redrawing a segment of the entity.
     */
     draw: function (ctx, x, y, w, h) {
+        //console.log("DRAW called on Canvas");
         if (!this.ready) return;
         if (arguments.length === 4) {
             h = w;
@@ -5955,7 +5956,6 @@ Crafty.extend({
         }
     }
 });
-
 
 Crafty.extend({
     over: null, //object mouseover, waiting for out
@@ -7677,24 +7677,32 @@ Crafty.DrawManager = (function () {
         * ~~~
         */
         drawAll: function (rect) {
+            //console.log("DEBUG: drawAll called in the draw manager");
             var rect = rect || Crafty.viewport.rect(),
                 q = Crafty.map.search(rect),
                 i = 0,
                 l = q.length,
                 ctx = Crafty.canvas.context,
+                buf = Crafty.bufferedCanvas._canvas,
                 current;
 
-            ctx.clearRect(rect._x, rect._y, rect._w, rect._h);
+            if(ctx) {ctx.clearRect(rect._x, rect._y, rect._w, rect._h);}
 
             //sort the objects by the global Z
             q.sort(function (a, b) { return a._globalZ - b._globalZ; });
+            //console.log("DEBUG: About to draw() all the objects"); // LEFT OFF~~~~~~~~~~~~~~~~~~~~
             for (; i < l; i++) {
                 current = q[i];
-                if (current._visible && current.__c.Canvas) {
+                if (current._visible && (current.__c.Canvas || current.__c.BufferedCanvas)) {
                     current.draw();
                     current._changed = false;
                 }
             }
+
+            // Copy the portion of the hidden bufferedcanvas which would be 
+            // visible onto the actual canvas
+            //ctx.drawImage(bufCtx,sx,sy,swidth,sheight, rect._x, rect._y, rect._w, rect._h);
+            ctx.drawImage(Crafty.bufferedCanvas._canvas, rect._x, rect._y, rect._w, rect._h);
         },
 
         /**@
