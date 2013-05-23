@@ -2,6 +2,7 @@ var debug_player;
 Gauntlet.Maps = {};
 Gauntlet.Maps.MainMap = (function() {
   var render, 
+    generateCamera,
     generateBorders,
     generateMap,
     generateEntities,
@@ -40,6 +41,10 @@ Gauntlet.Maps.MainMap = (function() {
       .attr({w: M_WIDTH, h: M_HEIGHT});
   }
 
+  generateCamera = function () {
+    return Crafty.e("OrthoScreen, Camera").orthoScreen().camera();
+  };
+
   generateMap = function () {
     render();
     generateBorders();
@@ -60,6 +65,7 @@ Gauntlet.Maps.MainMap = (function() {
   };
   
   return {
+    generateCamera: generateCamera,
     generateMap: generateMap,
     generateEntities: generateEntities
   };

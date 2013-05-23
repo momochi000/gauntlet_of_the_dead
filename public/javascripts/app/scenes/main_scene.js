@@ -1,8 +1,10 @@
 Crafty.scene('main', function (){
+  var camera, entities;
   Gauntlet.Sprites.load();
   Crafty.background("black");
   Gauntlet.Maps.MainMap.generateMap();
-  var entities = Gauntlet.Maps.MainMap.generateEntities();
+  entities = Gauntlet.Maps.MainMap.generateEntities();
+  camera = Gauntlet.Maps.MainMap.generateCamera();
 
-  Crafty.viewport.follow(entities.player, 0, 0);
+  camera.followTarget(entities['player']);
 });
