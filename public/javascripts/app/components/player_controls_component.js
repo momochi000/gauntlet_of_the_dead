@@ -6,7 +6,6 @@ Crafty.c("PlayerControls", {
 
   playerControls: function (){
     var __self = this;
-    
 
     this.bind('KeyDown', function (e){
       if(e.keyCode === Crafty.keys.W || e.keyCode === Crafty.keys.UP_ARROW){
@@ -24,8 +23,8 @@ Crafty.c("PlayerControls", {
     });
 
     this.bind('KeyUp', function (e){
-     if(e.keyCode === Crafty.keys.W || e.keyCode === Crafty.keys.UP_ARROW){
-        __self.stopMoveUp();
+      if(e.keyCode === Crafty.keys.W || e.keyCode === Crafty.keys.UP_ARROW){
+         __self.stopMoveUp();
       }
       if(e.keyCode === Crafty.keys.A || e.keyCode === Crafty.keys.LEFT_ARROW){
         __self.stopMoveLeft();
@@ -36,9 +35,7 @@ Crafty.c("PlayerControls", {
       if(e.keyCode === Crafty.keys.D || e.keyCode === Crafty.keys.RIGHT_ARROW){
         __self.stopMoveRight();
       }
-
     });
     return this;
   }
-
 });
