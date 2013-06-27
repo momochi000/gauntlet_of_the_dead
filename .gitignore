@@ -1,6 +1,7 @@
 *.sw*
 .bundle
 .DS_Store
+DEVNOTES.*
 *~
 tmp/
 development/
